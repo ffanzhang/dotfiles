@@ -28,3 +28,11 @@ then
 	echo Downloading C/C++ config file for youcompleteme
 	wget https://raw.githubusercontent.com/Valloric/ycmd/master/cpp/ycm/.ycm_extra_conf.py -P ~/.vim/bundle/YouCompleteMe
 fi
+
+# install tern for javascript
+pushd ~/.vim/bundle/tern_for_vim
+npm install
+popd
+
+# javascript autocompletion config file
+cp tern-project ~/.tern-project

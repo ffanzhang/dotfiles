@@ -8,6 +8,7 @@ call vundle#begin()
 	Plugin 'VundleVim/Vundle.vim'
 	Plugin 'altercation/vim-colors-solarized'
 	Plugin 'Valloric/YouCompleteMe'
+	Plugin 'ternjs/tern_for_vim'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -17,7 +18,13 @@ colorscheme solarized
 set clipboard=unnamedplus	" gnome clipboard
 set number
 set background=dark
+
+" youcompleteme settings
+" c family
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py"
+
+" python
+let g:ycm_python_binary_path = "/usr/bin/python3"
 
 " x clipboard workaround vim.wikia.com/wiki/Accessing_the_system_clipboard
 command -range Cz :silent :<line1>,<line2>w !xsel -i -b
