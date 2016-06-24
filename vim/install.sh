@@ -32,11 +32,12 @@ then
 fi
 
 # install tern for javascript
-if [ -f ~/.vim/bundle/tern_for_vim ]
+if [ -d ~/.vim/bundle/tern_for_vim ]
 then
 	pushd ~/.vim/bundle/tern_for_vim
-	if [ -f node_modules ]
+	if ! [ -d node_modules ]
 	then
+		echo Installing tern
 		npm install
 	fi
 	popd
