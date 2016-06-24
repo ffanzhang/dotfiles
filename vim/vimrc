@@ -37,7 +37,6 @@ cabbrev cx Cx
 command -range Pz :silent :r !xsel -o -b
 command -range Px :silent :r !xsel -o -p
 command -range Pv :silent :r !xsel -o -s
-
 cabbrev pz Pz
 cabbrev px Px
 cabbrev pv Pv

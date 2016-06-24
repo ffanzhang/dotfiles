@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ ! -d ~/.vim/bundle/Vundle.vim ]
+if ! [ -d ~/.vim/bundle/Vundle.vim ]
 then
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
@@ -18,21 +18,26 @@ then
 	if [ ${#ycm_string} -eq 0 ]
 	then
 		echo Installing youcompleteme using yaourt
+		gpg --recv-keys F7E48EDB
+		yaourt -S ncurses5-compat-libs
 		yaourt -S vim-youcompleteme-git
 	fi
 fi
 
 ycm_config_pathname=~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py
-if [ ! -f $ycm_config_pathname ]
+if ! [ -f $ycm_config_pathname ]
 then
 	echo Downloading C/C++ config file for youcompleteme
 	wget https://raw.githubusercontent.com/Valloric/ycmd/master/cpp/ycm/.ycm_extra_conf.py -P ~/.vim/bundle/YouCompleteMe
 fi
 
 # install tern for javascript
-pushd ~/.vim/bundle/tern_for_vim
-npm install
-popd
+if ! [ -f ~/.vim/bundle/tern_for_vim ]
+then
+	pushd ~/.vim/bundle/tern_for_vim
+	npm install
+	popd
+fi
 
 # javascript autocompletion config file
 cp tern-project ~/.tern-project
