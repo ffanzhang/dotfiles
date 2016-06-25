@@ -1,4 +1,4 @@
-if [ -x /bin/vim ]
+if [ -x /bin/vim ] && [ -x /bin/git ]
 then
 	git config --global diff.tool vimdiff
 	git config --global difftool.prompt false
