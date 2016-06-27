@@ -11,17 +11,20 @@ call vundle#begin()
         Plugin 'ternjs/tern_for_vim'
         Plugin 'vim-airline/vim-airline'
         Plugin 'vim-airline/vim-airline-themes'
+        Plugin 'xuhdev/vim-latex-live-preview'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
 
-set autoindent
-set smartindent
-set textwidth=79
-set expandtab                " covert tabs to spaces
-
 syntax enable
 colorscheme solarized
+
+set exrc
+set secure
+
+set expandtab                " covert tabs to spaces
+set nosmarttab
+set textwidth=79
 
 set clipboard=unnamedplus	" gnome clipboard
 set background=dark
@@ -40,6 +43,9 @@ let g:ycm_python_binary_path = "/usr/bin/python3"
 
 let g:airline_powerline_fonts = 1
 
+let g:livepreview_previewer = 'evince'
+
+map <F12> :LLPStartPreview<cr>
 map <C-K> :pyf /usr/share/clang/clang-format.py<cr>
 imap <C-K> <c-o>:pyf /usr/share/clang/clang-format.py<cr>
 

@@ -24,6 +24,11 @@ then
 			yaourt -S ncurses5-compat-libs
 			yaourt -S vim-youcompleteme-git
 		fi
+
+                if ! [ -x /bin/latex ]
+                then
+                        yaourt -S texlive-most
+                fi
 	fi
 
 	ycm_config_pathname=~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py
