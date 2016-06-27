@@ -5,26 +5,43 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
-	Plugin 'VundleVim/Vundle.vim'
-	Plugin 'altercation/vim-colors-solarized'
-	Plugin 'Valloric/YouCompleteMe'
-	Plugin 'ternjs/tern_for_vim'
+        Plugin 'VundleVim/Vundle.vim'
+        Plugin 'altercation/vim-colors-solarized'
+        Plugin 'Valloric/YouCompleteMe'
+        Plugin 'ternjs/tern_for_vim'
+        Plugin 'vim-airline/vim-airline'
+        Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
+
+set autoindent
+set smartindent
+set textwidth=79
+set expandtab                " covert tabs to spaces
+
 syntax enable
 colorscheme solarized
 
 set clipboard=unnamedplus	" gnome clipboard
-set number
 set background=dark
+set number
+
+set noswapfile
+set nobackup
+set nowb
+set nowrap
 
 " youcompleteme settings
 " c family
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py"
-
 " python
 let g:ycm_python_binary_path = "/usr/bin/python3"
+
+let g:airline_powerline_fonts = 1
+
+map <C-K> :pyf /usr/share/clang/clang-format.py<cr>
+imap <C-K> <c-o>:pyf /usr/share/clang/clang-format.py<cr>
 
 " x clipboard workaround vim.wikia.com/wiki/Accessing_the_system_clipboard
 command -range Cz :silent :<line1>,<line2>w !xsel -i -b
