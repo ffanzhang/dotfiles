@@ -1,4 +1,8 @@
-if [ -x /bin/vim ] && [ -x /bin/git ]
+command_exists() {
+        command -v "$1" > /dev/null
+}
+
+if command_exists vim && command_exists git
 then
 	git config --global diff.tool vimdiff
 	git config --global difftool.prompt false
