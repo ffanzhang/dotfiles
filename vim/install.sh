@@ -19,11 +19,19 @@ then
         sudo cp vimrc ~/.vimrc
 	sudo vim +PluginInstall +qall
 
-        if ! command_exists clang && command_exists apt-get
+        if command_exists apt-get
         then
-                sudo apt-get install clang
-        fi
+                # note for ubuntu may need to compile vim with python options
+                if ! command_exists clang
+                then
+                        sudo apt-get install clang
+                fi
 
+                if ! dpkg -s llvm
+                then
+                        sudo apt-get install llvm
+                fi
+        fi
         
 	if command_exists pacman && command_exists yaourt
 	then
