@@ -13,7 +13,7 @@ then
 
 	pushd ~/.vim/bundle/Vundle.vim
         sudo git stash
-	sudo git pull origin master
+	sudo submodule update --init --recursive
 	popd
 
         sudo cp vimrc ~/.vimrc
@@ -35,6 +35,7 @@ then
         
 	if command_exists pacman && command_exists yaourt
 	then
+                sudo pacman -S xsel
 		ycm_string=$(yaourt -Qm | grep youcompleteme)
 		if [ ${#ycm_string} -eq 0 ]
 		then
