@@ -13,7 +13,7 @@ then
 
         pushd ~/.vim/bundle/Vundle.vim
         sudo git stash
-        sudo submodule update --init --recursive
+        sudo git submodule update --init --recursive
         popd
 
         sudo cp vimrc ~/.vimrc
