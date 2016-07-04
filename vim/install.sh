@@ -16,6 +16,7 @@ then
         sudo git submodule update --init --recursive
         popd
 
+        sudo mv ~/.vimrc ~/.vimrc.bak
         sudo cp vimrc ~/.vimrc
         sudo vim +PluginInstall +qall
 
