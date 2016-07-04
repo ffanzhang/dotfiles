@@ -33,5 +33,13 @@
 
 !urxvt settings
 URxvt*font: xft:DejaVu Sans Mono for Powerline:size=11
+URxvt*letterSpace: -1
 URxvt*skipScroll: true
 URxvt*scrollBar: false
+
+Xft.rgba: none
+Xft.hinting: true
+Xft.autohint: true
+Xft.hintstyle: hintfull
+Xft.antialias: true
+
