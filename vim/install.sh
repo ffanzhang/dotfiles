@@ -19,6 +19,7 @@ then
         sudo mv ~/.vimrc ~/.vimrc.bak
         sudo cp vimrc ~/.vimrc
         sudo vim +PluginInstall +qall
+        sudo cp editorconfig ~/.editorconfig
 
         if command_exists apt-get
         then

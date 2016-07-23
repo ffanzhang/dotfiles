@@ -12,6 +12,7 @@ call vundle#begin()
         Plugin 'vim-airline/vim-airline'
         Plugin 'vim-airline/vim-airline-themes'
         Plugin 'xuhdev/vim-latex-live-preview'
+        Plugin 'maksimr/vim-jsbeautify'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -77,8 +78,13 @@ let g:airline_symbols.linenr = ''
 
 let g:livepreview_previewer='evince'
 
+
+
 " preview latex
 map <F12> :LLPStartPreview<cr>
+
+" format javascript
+map <c-f> :call JsBeautify()<cr>
 
 " key bindings for autoformat c family languages
 map <C-K> :pyf /usr/share/clang/clang-format.py<cr>
