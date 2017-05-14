@@ -1,5 +1,5 @@
 command_exists() {
-        command -v "$1" > /dev/null
+  command -v "$1" > /dev/null
 }
 
 if command_exists git
