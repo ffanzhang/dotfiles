@@ -6,21 +6,21 @@ if command_exists yum
 then
   sudo yum -y update
   sudo yum -y install vim
-  sudo yum -y install git
+  sudo yum -y install wget
 fi
 
 if command_exists apt-get
 then
-  sudo apt-get update
-  sudo apt-get install vim
-  sudo apt-get install git
+  sudo apt-get -y update
+  sudo apt-get -y install vim
+  sudo apt-get -y install wget
 fi
 
 if command_exists pacman
 then
   sudo pacman -Syu
   sudo pacman -S vim
-  sudo pacman -S git
+  sudo pacman -S wget
 fi
 
 if command_exists brew
@@ -29,13 +29,13 @@ then
   brew install vim
   brew install macvim
   brew link macvim
-  brew install git
+  brew install wget 
   brew install gcc-6
 fi
 
 for folder in `find * -type d`
 do
-	pushd $folder
-	./install.sh
-	popd
+  pushd $folder
+  ./install.sh
+  popd
 done

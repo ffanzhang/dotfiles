@@ -34,7 +34,7 @@ set textwidth=79
 " set shiftwidth=4
 " set softtabstop=4
 
-set clipboard=unnamedplus	" gnome clipboard, comment out for mac
+set clipboard=unnamedplus " gnome clipboard, comment out for mac
 set background=dark
 set number
 
