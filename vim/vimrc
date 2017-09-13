@@ -14,6 +14,7 @@ call vundle#begin()
         Plugin 'vim-airline/vim-airline-themes'
         Plugin 'xuhdev/vim-latex-live-preview'
         Plugin 'maksimr/vim-jsbeautify'
+        Plugin 'julialang/julia-vim'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -30,11 +31,36 @@ set secure
 set expandtab                " covert tabs to spaces
 set nosmarttab
 set textwidth=79
-" set tabstop=4
-" set shiftwidth=4
-" set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
-set clipboard=unnamedplus " gnome clipboard, comment out for mac
+if system('uname -s') == "Darwin\n"
+"   only tested with sierra
+    let g:livepreview_previewer='open -a preview'
+else
+  	set clipboard=unnamedplus
+
+    " default pdf viewer for gnome sys
+    let g:livepreview_previewer='evince'
+
+	" x clipboard workaround vim.wikia.com/wiki/Accessing_the_system_clipboard
+	" dependency is xsel
+    command -range Cz :silent :<line1>,<line2>w !xsel -i -b
+	command -range Cx :silent :<line1>,<line2>w !xsel -i -p
+	command -range Cv :silent :<line1>,<line2>w !xsel -i -s
+	cabbrev cv Cv
+	cabbrev cz Cz
+	cabbrev cx Cx
+
+	command -range Pz :silent :r !xsel -o -b
+	command -range Px :silent :r !xsel -o -p
+	command -range Pv :silent :r !xsel -o -s
+	cabbrev pz Pz
+	cabbrev px Px
+	cabbrev pv Pv
+endif
+
 set background=dark
 set number
 
@@ -81,12 +107,6 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-" default pdf viewer for gnome sys
-let g:livepreview_previewer='evince'
-
-" uncomment for mac 
-" let g:livepreview_previewer='open -a preview'
-
 " preview latex
 map <F12> :LLPStartPreview<cr>
 
@@ -97,18 +117,4 @@ map <F11> :call JsBeautify()<cr>
 map <C-K> :pyf /usr/share/clang/clang-format.py<cr>
 imap <C-K> <c-o> :pyf /usr/share/clang/clang-format.py<cr>
 
-" x clipboard workaround vim.wikia.com/wiki/Accessing_the_system_clipboard
-" dependency is xsel
-command -range Cz :silent :<line1>,<line2>w !xsel -i -b
-command -range Cx :silent :<line1>,<line2>w !xsel -i -p
-command -range Cv :silent :<line1>,<line2>w !xsel -i -s
-cabbrev cv Cv
-cabbrev cz Cz
-cabbrev cx Cx
 
-command -range Pz :silent :r !xsel -o -b
-command -range Px :silent :r !xsel -o -p
-command -range Pv :silent :r !xsel -o -s
-cabbrev pz Pz
-cabbrev px Px
-cabbrev pv Pv
