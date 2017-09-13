@@ -4,7 +4,7 @@ command_exists () {
   command -v "$1" > /dev/null
 }
 
-if command_exists vim
+if command_exists vim && command_exists git
 then
   if ! [ -d ~/.vim/bundle/Vundle.vim ]
   then
