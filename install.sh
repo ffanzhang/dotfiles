@@ -1,8 +1,4 @@
-# i'm adding a comment
-
-command_exists() {
-  command -v "$1" > /dev/null
-}
+source ./utils.sh
 
 if command_exists yum
 then

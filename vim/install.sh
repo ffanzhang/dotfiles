@@ -1,37 +1,34 @@
 #!/bin/bash
-
-command_exists () {
-  command -v "$1" > /dev/null
-}
+source ../utils.sh
 
 if command_exists vim && command_exists git
 then
   if ! [ -d ~/.vim/bundle/Vundle.vim ]
   then
-    sudo git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   fi
 
   pushd ~/.vim/bundle/Vundle.vim
-  sudo git stash
-  sudo git submodule update --init --recursive
+  git stash
+  git submodule update --init --recursive
   popd
 
-  sudo mv ~/.vimrc ~/.vimrc.bak.$(date +%s)
-  sudo cp vimrc ~/.vimrc
-  sudo vim +PluginInstall +qall
-  sudo cp editorconfig ~/.editorconfig
+  install_with_bak editorconfig ~/.editorconfig
+  install_with_bak tern-project ~/.tern-project
+  install_with_bak vimrc ~/.vimrc
+  vim +PluginInstall +qall
 
   if command_exists apt-get
   then
     # note for ubuntu may need to compile vim with python options
     if ! command_exists clang
     then
-      sudo apt-get install clang
+      apt-get install clang
     fi
 
     if ! dpkg -s llvm
     then
-      sudo apt-get install llvm
+      apt-get install llvm
     fi
   fi
 
@@ -63,7 +60,7 @@ then
   if ! [ -f $ycm_config_pathname ]
   then
     echo Downloading C/C++ config file for youcompleteme
-    sudo wget https://raw.githubusercontent.com/Valloric/ycmd/master/cpp/ycm/.ycm_extra_conf.py -P ~/.vim/bundle/YouCompleteMe
+    wget https://raw.githubusercontent.com/Valloric/ycmd/master/cpp/ycm/.ycm_extra_conf.py -P ~/.vim/bundle/YouCompleteMe
   fi
 
   # install tern for javascript
@@ -73,11 +70,8 @@ then
     if ! [ -d node_modules ] && command_exists npm
     then
       echo Installing tern
-      sudo npm install
+      npm install
     fi
     popd
   fi
-
-  # javascript autocompletion config file
-  cp tern-project ~/.tern-project
 fi
