@@ -1,6 +1,6 @@
 # checks if a command is there
 command_exists() {
-  command -v "$1" > /dev/null
+    command -v "$1" > /dev/null
 }
 
 # $1: source file directory
