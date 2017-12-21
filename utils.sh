@@ -8,7 +8,7 @@ command_exists() {
 install_with_bak() {
     if [ -f $2 ]
     then
-        mv $2 $2.bak.$(date +%s)
+        mv $2 $2.bak.$(date +%s%3N)
     fi
     cp $1 $2
 }
