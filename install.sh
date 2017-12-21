@@ -1,5 +1,7 @@
 source ./utils.sh
 
+./install_simple.sh
+
 if command_exists yum
 then
     sudo yum -y update
