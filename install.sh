@@ -1,6 +1,5 @@
 source ./utils.sh
-
-./install_simple.sh
+source ./install_simple.sh
 
 if command_exists yum
 then
