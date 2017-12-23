@@ -8,7 +8,11 @@ command_exists() {
 install_with_bak() {
     if [ -f $2 ]
     then
-        mv $2 $2.bak.$(date +%s%3N)
+        # only make a backup if the new file is different
+        if [ "$(diff $1 $2)" != "" ]
+        then
+            mv $2 $2.bak.$(date +%s%3N)
+        fi
     fi
     cp $1 $2
 }

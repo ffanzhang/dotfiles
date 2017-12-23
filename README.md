@@ -15,7 +15,7 @@ make
 
 ### vim
 - clippboard needs to be unamedplus for some oses 
-- youcompleteme is a pain to install, vim needs to be compiles with a python flag
+- youcompleteme is a pain to install, vim needs to be compiled with a python flag
 
 ### tmux
 - $TERM variable of the terminal that initiates a tmux session must
