@@ -8,4 +8,4 @@ install_with_bak Xresources/Xresources ~/.Xresources
 install_with_bak tmux/tmux.conf ~/.tmux.conf
 
 xrdb -merge ~/.Xresources
-echo done
+echo done with basic setup

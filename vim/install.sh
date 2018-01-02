@@ -74,4 +74,12 @@ then
         fi
         popd
     fi
+
+    # getting powerline fonts
+
+    if ! [ -d fonts ]
+    then
+        git clone https://github.com/powerline/fonts
+    fi
+    fonts/install.sh
 fi

@@ -1,6 +1,8 @@
 source ./utils.sh
 source ./install_simple.sh
 
+echo starting slightly longer setup
+
 if command_exists yum
 then
     sudo yum -y update
@@ -13,6 +15,8 @@ then
     sudo apt-get -y update
     sudo apt-get -y install vim
     sudo apt-get -y install wget
+    sudo apt-get -y install tmux
+    sudo apt-get -y install rxvt-unicode
 fi
 
 if command_exists pacman
@@ -32,9 +36,16 @@ then
     brew install gcc-6
 fi
 
-for folder in `find * -type d`
+for item in `ls`
 do
-    pushd $folder
-    ./install.sh
-    popd
+    # if a directory go in
+    if [ -d $item ]
+    then
+        pushd $item
+        if [ -f install.sh ]
+        then
+            ./install.sh
+        fi
+        popd
+    fi
 done
