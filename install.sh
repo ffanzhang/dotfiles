@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source ./utils.sh
 source ./install_simple.sh
 
