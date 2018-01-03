@@ -31,7 +31,41 @@
 *color14: #93a1a1
 *color15: #fdf6e3
 
-!urxvt settings
+! duplicate above and preprend XTerm
+Xterm*termName: screen-256color
+Xterm*faceName: DejaVu Sans Mono for Powerline
+Xterm*faceSize: 11
+Xterm*loginShell: true
+Xterm*saveLines: 1024
+Xterm*eightBitInput: false
+Xterm*geometry: 80x40
+
+Xterm*background: #002b36
+Xterm*foreground: #839496
+Xterm*fading: 40
+Xterm*fadeColor: #002b36
+Xterm*cursorColor: #93a1a1
+Xterm*pointerColorBackground: #586e75
+Xterm*pointerColorForeground: #93a1a1
+
+Xterm*color0: #073642
+Xterm*color1: #dc322f
+Xterm*color2: #859900
+Xterm*color3: #b58900
+Xterm*color4: #268bd2
+Xterm*color5: #d33682
+Xterm*color6: #2aa198
+Xterm*color7: #eee8d5
+Xterm*color8: #002b36
+Xterm*color9: #cb4b16
+Xterm*color10: #586e75
+Xterm*color11: #657b83
+Xterm*color12: #839496
+Xterm*color13: #6c71c4
+Xterm*color14: #93a1a1
+Xterm*color15: #fdf6e3
+
+! urxvt settings
 URxvt*font: xft:DejaVu Sans Mono for Powerline:size=11
 URxvt*letterSpace: -1
 URxvt*skipScroll: true
