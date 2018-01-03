@@ -8,7 +8,6 @@ filetype plugin indent on    " required
 syntax enable
 set background=dark
 colorscheme default
-set t_Co=16
 
 set encoding=utf-8
 
@@ -24,36 +23,31 @@ set shiftwidth=4
 set softtabstop=4
 
 set foldmethod=syntax
-set foldlevelstart=3
+set foldlevelstart=4
 
-if system('uname -s') == "Darwin\n"
-"   only tested with sierra
-    let g:livepreview_previewer='open -a preview'
-else
+set nowrap
+
+if system('uname -s') != "Darwin\n"
     set clipboard=unnamedplus
-
-    " default pdf viewer for gnome sys
-    let g:livepreview_previewer='evince'
-
-    " x clipboard workaround vim.wikia.com/wiki/Accessing_the_system_clipboard
-    " dependency is xsel
-    command -range Cz :silent :<line1>,<line2>w !xsel -i -b
-    command -range Cx :silent :<line1>,<line2>w !xsel -i -p
-    command -range Cv :silent :<line1>,<line2>w !xsel -i -s
-    cabbrev cv Cv
-    cabbrev cz Cz
-    cabbrev cx Cx
-
-    command -range Pz :silent :r !xsel -o -b
-    command -range Px :silent :r !xsel -o -p
-    command -range Pv :silent :r !xsel -o -s
-    cabbrev pz Pz
-    cabbrev px Px
-    cabbrev pv Pv
 endif
 
-set number
+" x clipboard workaround vim.wikia.com/wiki/Accessing_the_system_clipboard
+" dependency is xsel
+command -range Cz :silent :<line1>,<line2>w !xsel -i -b
+command -range Cx :silent :<line1>,<line2>w !xsel -i -p
+command -range Cv :silent :<line1>,<line2>w !xsel -i -s
+cabbrev cv Cv
+cabbrev cz Cz
+cabbrev cx Cx
 
+command -range Pz :silent :r !xsel -o -b
+command -range Px :silent :r !xsel -o -p
+command -range Pv :silent :r !xsel -o -s
+cabbrev pz Pz
+cabbrev px Px
+cabbrev pv Pv
+
+set number
 set noswapfile
 set nobackup
 set nowb
@@ -61,47 +55,3 @@ set nowrap
 
 set ignorecase
 set smartcase
-
-" youcompleteme settings
-" c family
-let g:ycm_global_ycm_extra_conf="~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py"
-
-" airline related settings, patch the fonts after first installation
-set noshowmode
-set laststatus=2
-set ttimeoutlen=10
-let g:airline#extensions#tabline#enabled=1
-let g:airline_powerline_fonts=1
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_symbols.crypt = ''
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.spell = 'S'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-
-" preview latex
-map <F12> :LLPStartPreview<cr>
-
-" format javascript
-map <F11> :call JsBeautify()<cr>
-
-" key bindings for autoformat c family languages
-map <C-K> :pyf /usr/share/clang/clang-format.py<cr>
-imap <C-K> <c-o> :pyf /usr/share/clang/clang-format.py<cr>

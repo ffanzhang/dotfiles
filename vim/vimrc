@@ -24,8 +24,7 @@ filetype plugin indent on    " required
 
 syntax enable
 set background=dark
-colorscheme default
-set t_Co=16
+colorscheme solarized
 
 set encoding=utf-8
 
@@ -41,7 +40,9 @@ set shiftwidth=4
 set softtabstop=4
 
 set foldmethod=syntax
-set foldlevelstart=3
+set foldlevelstart=4
+
+set nowrap
 
 if system('uname -s') == "Darwin\n"
 "   only tested with sierra
