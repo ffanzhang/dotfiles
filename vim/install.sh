@@ -82,4 +82,10 @@ then
         git clone https://github.com/powerline/fonts
     fi
     fonts/install.sh
+
+    if ! [ -d ~/.fonts ]
+    then
+        ln -s ~/.local/share/fonts ~/.fonts
+        fc-cache -fv
+    fi
 fi

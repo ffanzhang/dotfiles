@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source ../utils.sh
 
 if command_exists git
