@@ -1,5 +1,18 @@
-#!/bin/sh
-if [ ! -f solarized.bash ]
+#!/bin/bash
+source ../utils.sh
+
+if ! [ -d ~/.solarized ]
 then
-	wget --no-check-certificate https://gist.githubusercontent.com/kraft001/2893831/raw/18922a11f6caed33c4083068e26a45f69076aa65/solarized.bash
+    mkdir ~/.solarized
 fi
+
+pushd ~/.solarized
+if ! [ -d ~/.solarized/dircolors-solarized ];
+then
+    git clone https://github.com/seebi/dircolors-solarized.git
+fi
+popd
+
+install_with_bak ~/.solarized/dircolors-solarized/dircolors.256dark ~/.dircolors
+
+test -e ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
