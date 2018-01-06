@@ -18,6 +18,7 @@ call vundle#begin()
     Plugin 'maksimr/vim-jsbeautify'
     Plugin 'julialang/julia-vim'
     Plugin 'sheerun/vim-polyglot'
+    Plugin 'fatih/vim-go'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
