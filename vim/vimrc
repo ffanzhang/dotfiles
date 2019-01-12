@@ -19,6 +19,7 @@ call vundle#begin()
     Plugin 'julialang/julia-vim'
     Plugin 'sheerun/vim-polyglot'
     Plugin 'fatih/vim-go'
+    Plugin 'vim-scripts/Conque-GDB'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -115,11 +116,14 @@ let g:airline_symbols.branch=''
 let g:airline_symbols.readonly=''
 let g:airline_symbols.linenr=''
 
-" preview latex
-map <F12> :LLPStartPreview<cr>
+" stop conque-gdb from complaining
+let g:go_version_warning = 0 
 
 " format javascript
 map <F11> :call JsBeautify()<cr>
+
+" preview latex
+map <F12> :LLPStartPreview<cr>
 
 " key bindings for autoformat c family languages
 map <C-K> :pyf /usr/share/clang/clang-format.py<cr>
