@@ -18,6 +18,7 @@ then
     sudo apt-get -y install vim
     sudo apt-get -y install wget
     sudo apt-get -y install tmux
+    sudo apt-get -y install xsel 
     sudo apt-get -y install rxvt-unicode
 fi
 
