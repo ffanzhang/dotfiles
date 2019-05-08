@@ -52,3 +52,7 @@ do
         popd
     fi
 done
+
+touch ~/.inputrc
+echo set bell-style none > ~/.inputrc
+
