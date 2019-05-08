@@ -53,6 +53,8 @@ do
     fi
 done
 
-touch ~/.inputrc
-echo set bell-style none > ~/.inputrc
+touch inputrc
+echo set bell-style none > inputrc
+install_with_bak inputrc ~/.inputrc
+rm inputrc
 

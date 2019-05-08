@@ -7,8 +7,11 @@ install_with_bak vim/tern-project ~/.tern-project
 install_with_bak Xresources/Xresources ~/.Xresources
 install_with_bak tmux/tmux.conf ~/.tmux.conf
 
-touch ~/.inputrc
-echo set bell-style none > ~/.inputrc
+
+touch inputrc
+echo set bell-style none > inputrc
+install_with_bak inputrc ~/.inputrc
+rm inputrc
 
 xrdb -load ~/.Xresources
 echo done with basic setup
