@@ -1,9 +1,39 @@
 #!/bin/bash
-
 source ./utils.sh
-source ./install_simple.sh
 
-echo starting slightly longer setup
+simple=0
+while getopts "hs" arg; do
+    case $arg in
+        h)
+            echo "Usage: ./install.sh [-s]"
+            exit 0;
+            ;;
+        s)
+            simple=1
+            ;;
+    esac
+done
+
+install_with_bak vim/vimrc_simple ~/.vimrc
+install_with_bak vim/editorconfig ~/.editorconfig
+install_with_bak vim/tern-project ~/.tern-project
+install_with_bak Xresources/Xresources ~/.Xresources
+install_with_bak tmux/tmux.conf ~/.tmux.conf
+install_with_bak i3/config ~/.i3/config
+
+touch inputrc
+echo set bell-style none > inputrc
+install_with_bak inputrc ~/.inputrc
+rm inputrc
+
+xrdb -load ~/.Xresources
+
+if [ $((simple)) -eq 1 ]; then
+    echo Done with simple setup, exiting;
+    exit 0;
+fi
+
+echo Starting a slightly longer setup
 
 if command_exists yum
 then
@@ -52,9 +82,4 @@ do
         popd
     fi
 done
-
-touch inputrc
-echo set bell-style none > inputrc
-install_with_bak inputrc ~/.inputrc
-rm inputrc
 
