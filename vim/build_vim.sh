@@ -9,10 +9,15 @@ sudo apt-get install libncurses5
 pushd vim
 git stash
 git submodule update --init --recursive
+pushd src
+sudo make distclean;
+./configure --prefix=/usr/local \
+            --with-features=huge \
+            --with-tlib=ncurses \
+            --enable-pythoninterp  \
+            --enable-python3interp  \
 
-./configure --enable-pythoninterp=yes \
-            --with-tblib=ncurses \
-            --prefix=/usr/local
-
-make VIMRUNTIMEDIR=/usr/local/share/vim/vim80
+sudo make;
+sudo make install;
+popd
 popd
