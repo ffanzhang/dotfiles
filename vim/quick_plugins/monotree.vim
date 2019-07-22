@@ -4,11 +4,13 @@ let g:netrw_browse_split=4
 let g:netrw_winsize=20
 
 function! MonoTree()
-  execute "Vex"
-  execute "wincmd l"
+    execute "Vex"
+    execute "wincmd l"
 endfunction
 
-augroup monotree
-  autocmd!
-  autocmd VimEnter * call MonoTree() 
-augroup END
+if !&diff
+    augroup monotree
+        autocmd!
+        autocmd VimEnter * call MonoTree() 
+    augroup END
+endif
