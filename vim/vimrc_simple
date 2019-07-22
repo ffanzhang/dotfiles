@@ -6,8 +6,8 @@ autocmd Filetype python set foldmethod=indent
 filetype plugin indent on    " required
 
 syntax enable
-set background=dark
-colorscheme default
+" set background=dark
+" colorscheme default
 
 set encoding=utf-8
 
@@ -55,3 +55,6 @@ set nowrap
 
 set ignorecase
 set smartcase
+
+source ~/.monoline.vim
+source ~/.monotree.vim
