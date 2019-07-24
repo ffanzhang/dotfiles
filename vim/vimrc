@@ -1,11 +1,13 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim -u NONE filename to fallback if settings break
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" set the runtime path to include Vundle and initialize
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vundle
+set nocompatible
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-
-autocmd Filetype python set foldmethod=indent
-
 call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'altercation/vim-colors-solarized'
@@ -14,26 +16,31 @@ call vundle#begin()
     Plugin 'tpope/vim-fugitive'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'enricobacis/vim-airline-clock'
+    Plugin 'ffanzhang/vim-airline-stopwatch'
     Plugin 'xuhdev/vim-latex-live-preview'
     Plugin 'maksimr/vim-jsbeautify'
     Plugin 'julialang/julia-vim'
     Plugin 'sheerun/vim-polyglot'
     Plugin 'fatih/vim-go'
     Plugin 'vim-scripts/Conque-GDB'
-call vundle#end()            " required
+call vundle#end()
+filetype plugin indent on
 
-filetype plugin indent on    " required
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-syntax enable
-set background=dark
-colorscheme solarized
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" misc
 set encoding=utf-8
-
-" settings to enable project specific .vimrc files
+set path+=**                 " recurisve find
 set exrc
 set secure
+set number
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  tab behavior
 set expandtab                " covert tabs to spaces
 set nosmarttab
 set textwidth=79
@@ -41,20 +48,48 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fold
+autocmd Filetype python set foldmethod=indent
 set foldmethod=syntax
 set foldlevelstart=4
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" search
+set ignorecase              " allows search with lower case letters
+set smartcase               " if search contains upper case, overides ignorecase
+                            " and shows exact match,
+                            "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" swap
+set noswapfile
+set nobackup
+set nowb
 set nowrap
 
-if system('uname -s') == "Darwin\n"
-"   only tested with sierra
-    let g:livepreview_previewer='open -a preview'
-else
-    set clipboard=unnamedplus
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-    " default pdf viewer for gnome sys
-    let g:livepreview_previewer='evince'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" color
+syntax enable
+set background=dark
+colorscheme solarized
+set t_Co=16
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" copying and pasting
+set clipboard=autoselectplus
+if executable("xsel")
+    " usually [ "+y  "*y "+p "*p ] will work if vim is compiled with +clipboard
+    " in case it doesn't
     " x clipboard workaround vim.wikia.com/wiki/Accessing_the_system_clipboard
     " dependency is xsel
     command -range Cz :silent :<line1>,<line2>w !xsel -i -b
@@ -67,28 +102,25 @@ else
     command -range Pz :silent :r !xsel -o -b
     command -range Px :silent :r !xsel -o -p
     command -range Pv :silent :r !xsel -o -s
-    cabbrev pz Pz
+    cabbrev pz Pp
     cabbrev px Px
     cabbrev pv Pv
 endif
 
-set number
 
-set noswapfile
-set nobackup
-set nowb
-set nowrap
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set ignorecase
-set smartcase
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " youcompleteme settings
 " c family
 let g:ycm_global_ycm_extra_conf="~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py"
 
-" airline related settings, patch the fonts after first installation
-set noshowmode
-set laststatus=2
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" airline
+set noshowmode          " turns off mode showing because airline has mode status
+set laststatus=2        " shows statusline
 set ttimeoutlen=10
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
@@ -116,15 +148,37 @@ let g:airline_symbols.branch=''
 let g:airline_symbols.readonly=''
 let g:airline_symbols.linenr=''
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" misc
+
 " stop conque-gdb from complaining
-let g:go_version_warning = 0 
+let g:go_version_warning = 0
 
 " format javascript
 map <F11> :call JsBeautify()<cr>
 
 " preview latex
 map <F12> :LLPStartPreview<cr>
+let g:livepreview_previewer =
+          \ (system('uname -s') == "Darwin\n") ? ('open -a preview') : ('evince')
 
 " key bindings for autoformat c family languages
+" quick format: gg=G
 map <C-K> :pyf /usr/share/clang/clang-format.py<cr>
 imap <C-K> <c-o> :pyf /usr/share/clang/clang-format.py<cr>
+
+map tr :call airline#extensions#stopwatch#run()<CR>
+map tp :call airline#extensions#stopwatch#split()<CR>
+map ts :call airline#extensions#stopwatch#stop()<CR>
+map tt :call airline#extensions#stopwatch#reset()<CR>
+
+function! RemoveTrailingSpaces()
+    %s/\s\+$//
+endfunction
+
+command Rmtr call RemoveTrailingSpaces()
+cabbrev rmtr Rmtr
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
