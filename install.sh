@@ -68,7 +68,7 @@ then
     brew install macvim
     brew link macvim
     brew install wget 
-    brew install gcc-6
+    brew install gcc
 fi
 
 for item in `ls`
@@ -76,12 +76,9 @@ do
     # if a directory go in
     if [ -d $item ]
     then
-        pushd $item
-        if [ -f install.sh ]
+        if [ -f $item/install.sh ]
         then
-            ./install.sh
+            ./$item/install.sh
         fi
-        popd
     fi
 done
-
