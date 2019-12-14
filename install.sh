@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./utils.sh
+source $PWD/utils.sh
 
 simple=0
 while getopts "hs" arg; do

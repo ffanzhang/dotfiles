@@ -1,6 +1,5 @@
 #!/bin/bash
-
-source ../utils.sh
+source $PWD/../utils.sh
 
 if command_exists git
 then
