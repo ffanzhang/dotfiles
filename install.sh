@@ -1,5 +1,5 @@
 #!/bin/bash
-source $PWD/utils.sh
+source ${BASH_SOURCE%/*}/utils.sh
 
 simple=0
 while getopts "hs" arg; do

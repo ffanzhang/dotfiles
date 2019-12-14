@@ -1,5 +1,5 @@
 #!/bin/bash
-source ../utils.sh
+source ${BASH_SOURCE%/*}/../utils.sh
 
 if command_exists vim && command_exists git
 then
