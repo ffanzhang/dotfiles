@@ -1,5 +1,5 @@
 #!/bin/bash
-source ${BASH_SOURCE%/*}/utils.sh
+source ./utils.sh
 
 simple=0
 while getopts "hs" arg; do
@@ -78,7 +78,9 @@ do
     then
         if [ -f $item/install.sh ]
         then
-            ./$item/install.sh
+            pushd $item
+            ./install.sh
+            popd
         fi
     fi
 done
