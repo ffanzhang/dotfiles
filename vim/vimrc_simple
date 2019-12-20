@@ -8,6 +8,7 @@ set background=dark
 set t_Co=16
 
 set encoding=utf-8
+set path+=**                 " recurisve find
 
 set exrc
 set secure
