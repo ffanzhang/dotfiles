@@ -1,0 +1,15 @@
+os:
+    - linux
+    - osx
+
+addons:
+    apt:
+        packages: &common-apt-packages
+            - vim
+
+    homebrew:
+        update: false
+        packages:
+            - vim
+
+script: test/test.sh
