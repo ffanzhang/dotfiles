@@ -15,7 +15,6 @@ sudo make distclean;
             --with-features=huge \
             --with-tlib=ncurses \
             --enable-pythoninterp  \
-            --enable-python3interp  \
 
 sudo make;
 sudo make install;
