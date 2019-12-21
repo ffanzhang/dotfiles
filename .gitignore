@@ -1,7 +1,6 @@
 *.log
 *.swp
 *.bash
-test
 vim/fonts
 vim/fonts/*
 vim/vim
