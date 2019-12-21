@@ -12,4 +12,5 @@ addons:
         packages:
             - vim
 
+before-script: make simple
 script: test/test.sh
