@@ -9,4 +9,4 @@ if len(v:errors) == 0
     call execute('write vimpassed.txt')
 endif
 
-call execute('qa')
+call execute('qall')
