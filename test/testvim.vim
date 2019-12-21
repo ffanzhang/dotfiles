@@ -6,5 +6,5 @@ call assert_true(&shiftwidth == 4)
 call assert_true(&softtapstop == 4)
 
 if len(v:errors) == 0
-    call execute(':w vimpassed.txt')
+    call execute(':wq vimpassed.txt')
 endif
