@@ -5,7 +5,7 @@ simple=0
 while getopts "hsv" arg; do
     case $arg in
         h)
-            echo "Usage: ./install.sh [-s ^ -v]"
+            echo "Usage: ./install.sh [-s | -v]"
             exit 0;
             ;;
         s)
@@ -33,7 +33,6 @@ touch inputrc
 echo set bell-style none > inputrc
 install_with_bak inputrc ~/.inputrc
 rm inputrc
-
 xrdb -load ~/.Xresources
 
 if [ $((simple)) -eq 1 ]; then
@@ -41,52 +40,33 @@ if [ $((simple)) -eq 1 ]; then
     exit 0;
 fi
 
-echo Starting a slightly longer setup
+echo story time 
+
+STORY_TIME="vi vim nvim tmux gcc g++ python python3 git ninja curl wget cmake pkgconfig"
 
 if command_exists yum
 then
     sudo yum -y update
-    sudo yum -y install vim
-    sudo yum -y install wget
+    sudo yum -y install $STORY_TIME
 fi
 
 if command_exists apt-get
 then
     sudo apt-get -y update
-    sudo apt-get -y install vim
-    sudo apt-get -y install wget
-    sudo apt-get -y install tmux
-    sudo apt-get -y install xsel 
-    sudo apt-get -y install rxvt-unicode
+    sudo apt-get -y install $STORY_TIME
 fi
 
 if command_exists pacman
 then
     sudo pacman -Syu
-    sudo pacman -S vim
-    sudo pacman -S wget
+    sudo pacman -S $STORY_TIME 
 fi
 
 if command_exists brew
 then
     brew update
-    brew install vim
-    brew install macvim
-    brew link macvim
-    brew install wget 
-    brew install gcc
+    brew install -f $STORY_TIME 
 fi
 
-for item in `ls`
-do
-    # if a directory go in
-    if [ -d $item ]
-    then
-        if [ -f $item/install.sh ]
-        then
-            pushd $item
-            ./install.sh
-            popd
-        fi
-    fi
-done
+echo configure time
+./git/install.sh
