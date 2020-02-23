@@ -8,29 +8,11 @@ cache:
 build_script:
 - cmd: >-
     install.bat
-
-
     if not exist "%USERPROFILE%\.vimrc" exit 1
-
-
-    if not exist "%USERPROFILE%\.monotree.vim" exit 1
-
-
-    if not exist "%USERPROFILE%\.monoline.vim" exit 1
-
-
     vim --version
-
-
     vim -S test/testvim.vim +qall
-
-
     echo %cd%
-
-
     dir
-
-
     if not exist "%cd%\vimpassed.txt" exit 1
 before_test:
 - cmd: ''

@@ -2,14 +2,20 @@
 source ./utils.sh
 
 simple=0
-while getopts "hs" arg; do
+while getopts "hsv" arg; do
     case $arg in
         h)
-            echo "Usage: ./install.sh [-s]"
+            echo "Usage: ./install.sh [-s ^ -v]"
             exit 0;
             ;;
         s)
             simple=1
+            ;;
+        v)
+            install_with_bak vim/vimrc_simple ~/.vimrc;
+            install_with_bak vim/quick_plugins/monoline.vim ~/.monoline.vim;
+            install_with_bak vim/quick_plugins/monotree.vim ~/.monotree.vim;
+            exit 0;
             ;;
     esac
 done

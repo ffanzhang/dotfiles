@@ -4,7 +4,6 @@ autocmd Filetype python set foldmethod=indent
 filetype plugin indent on 
 
 syntax enable
-set background=dark
 set t_Co=16
 
 set encoding=utf-8
@@ -24,29 +23,6 @@ set foldmethod=syntax
 set foldlevelstart=4
 
 set clipboard=autoselectplus
-" if system('uname -s') != "Darwin\n"
-"    set clipboard=unnamedplus
-" endif
-
-if executable("xsel")
-    " usually [ "+y  "*y "+p "*p ] will work if vim is compiled with +clipboard
-    " in case it doesn't
-    " x clipboard workaround vim.wikia.com/wiki/Accessing_the_system_clipboard
-    " dependency is xsel
-    command -range Cz :silent :<line1>,<line2>w !xsel -i -b
-    command -range Cx :silent :<line1>,<line2>w !xsel -i -p
-    command -range Cv :silent :<line1>,<line2>w !xsel -i -s
-    cabbrev cv Cv
-    cabbrev cz Cz
-    cabbrev cx Cx
-
-    command -range Pz :silent :r !xsel -o -b
-    command -range Px :silent :r !xsel -o -p
-    command -range Pv :silent :r !xsel -o -s
-    cabbrev pz Pp
-    cabbrev px Px
-    cabbrev pv Pv
-endif
 
 set number
 set noswapfile
@@ -54,8 +30,13 @@ set nobackup
 set nowb
 set nowrap
 
+set incsearch
+set hlsearch
+set wildmenu
+set cursorline
 set ignorecase
 set smartcase
 
-source ~/.monoline.vim
-source ~/.monotree.vim
+set lazyredraw
+
+set noerrorbells
