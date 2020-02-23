@@ -12,5 +12,5 @@ addons:
         packages:
             - vim
 
-before-script: make simple
+before-script: make kiss
 script: test/test.sh
