@@ -19,7 +19,7 @@ addons:
         packages:
             - vim
 
-before-script: make kiss
+before-script:
     case $TRAVIS_OS_NAME in
       windows)
         install.bat;
