@@ -5,6 +5,7 @@ os:
 
 addons:
     apt:
+        update: false
         packages: &common-apt-packages
             - vim
 
@@ -12,37 +13,24 @@ addons:
         update: false
         packages:
             - vim
+
     choco:
+        update: false
         packages:
             - vim
 
 before-script: make kiss
     case $TRAVIS_OS_NAME in
       windows)
-        install.bat
+        install.bat;
         ;;
       linux)
-        make kiss
+        make kiss;
         ;;
       osx)
-        make kiss
+        make kiss;
         ;;
     esac
 
 script: 
-    case $TRAVIS_OS_NAME in
-      windows)
-        if not exist "%USERPROFILE%\.vimrc" exit 1
-        vim --version
-        vim -S test/testvim.vim +qall
-        echo %cd%
-        dir
-        if not exist "%cd%\vimpassed.txt" exit 1
-        ;;
-      linux)
-        test/test.sh
-        ;;
-      osx)
-        test/test.sh
-        ;;
-    esac
+    test/test.sh
