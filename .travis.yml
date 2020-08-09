@@ -22,12 +22,15 @@ addons:
 before-script:
     case $TRAVIS_OS_NAME in
       windows)
+        vim --version;
         install.bat;
         ;;
       linux)
+        vim --version;
         make kiss;
         ;;
       osx)
+        vim --version;
         make kiss;
         ;;
     esac
