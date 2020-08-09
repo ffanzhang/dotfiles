@@ -29,10 +29,12 @@ before-script:
         ;;
       linux)
         vim --version;
+        sudo chmod +x test/test.sh;
         make kiss;
         ;;
       osx)
         vim --version;
+        sudo chmod +x test/test.sh;
         make kiss;
         ;;
     esac
