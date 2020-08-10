@@ -6,7 +6,5 @@ call assert_true(&shiftwidth == 4)
 call assert_true(&softtabstop == 4)
 
 if len(v:errors) == 0
-    call execute('write vimpassed.txt')
+  write vimpassed.txt
 endif
-
-call execute('qall')
