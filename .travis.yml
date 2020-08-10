@@ -1,4 +1,4 @@
-language: generic
+language: shell
 
 os:
     - linux
@@ -39,5 +39,5 @@ before-script:
         ;;
     esac
 
-script: 
+script:
     test/test.sh
