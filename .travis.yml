@@ -25,7 +25,7 @@ before-script:
     case $TRAVIS_OS_NAME in
       windows)
         vim --version;
-        install.bat;
+        ./install.bat;
         ;;
       linux)
         vim --version;
