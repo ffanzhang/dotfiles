@@ -1,4 +1,9 @@
 ```
+make kiss
+```
+- fast settings overrides and making a backup of existing settings
+
+```
 make simple
 ```
 - quick version of install
@@ -8,7 +13,7 @@ make
 ```
 - comprehensive install
 
-# caveats
+# notes
 ### vim
 - clippboard needs to be unamedplus for some oses 
 - youcompleteme is a pain to install, vim needs to be compiled with a python flag
