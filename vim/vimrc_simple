@@ -40,3 +40,10 @@ set smartcase
 set lazyredraw
 
 set noerrorbells
+
+function! RemoveTrailingSpaces()
+    %s/\s\+$//
+endfunction
+
+command Rmtr call RemoveTrailingSpaces()
+cabbrev rmtr Rmtr

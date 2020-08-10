@@ -1,3 +1,5 @@
+language: shell
+
 os:
     - linux
     - osx
@@ -22,15 +24,20 @@ addons:
 before-script:
     case $TRAVIS_OS_NAME in
       windows)
-        install.bat;
+        vim --version;
+        ./install.bat;
         ;;
       linux)
+        vim --version;
+        sudo chmod +x test/test.sh;
         make kiss;
         ;;
       osx)
+        vim --version;
+        sudo chmod +x test/test.sh;
         make kiss;
         ;;
     esac
 
-script: 
+script:
     test/test.sh
